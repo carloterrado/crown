@@ -1,6 +1,7 @@
-import "./App.css";
-
-import Category from "./components/category/Category";
+import { Outlet, Route, Routes } from "react-router-dom";
+import Home from "./routes/home/Home";
+import Navigation from "./routes/navigation/Navigation";
+import Auth from "./routes/auth/Auth";
 
 const categories = [
   {
@@ -30,8 +31,20 @@ const categories = [
   },
 ];
 
+const Shop = () => {
+  return <h1>This is the shop page</h1>;
+};
+
 const App = () => {
-  return <Category categories={categories} />;
+  return (
+    <Routes>
+      <Route path="/" element={<Navigation />}>
+        <Route index element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/auth" element={<Auth />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default App;
