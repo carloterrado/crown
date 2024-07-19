@@ -6,6 +6,8 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 import { getFirestore, getDoc, addDoc, doc, setDoc } from "firebase/firestore";
@@ -63,4 +65,41 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const signOutAuthUser = async () => {
+  try {
+    return await signOut(auth);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
+
+export const alertFirebaseErrorMessage = (errorCode) => {
+  switch (errorCode) {
+    // sign in error
+    case "auth/invalid-credential":
+      alert("wrong email or password");
+      break;
+    case "auth/weak-password":
+      alert("weak password");
+      break;
+    // sign up error
+    case "auth/email-already-in-use":
+      alert("email already in use");
+      break;
+    case "auth/weak-password":
+      alert("weak password");
+      break;
+    // close popup
+    case "auth/popup-closed-by-user":
+      console.log("popup window closed by user");
+      break;
+    default:
+      console.log(errorCode);
+      break;
+  }
 };

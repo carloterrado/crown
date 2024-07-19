@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  alertFirebaseErrorMessage,
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
@@ -12,20 +13,6 @@ const defaultFormFields = {
   email: "",
   password: "",
   confirmPassword: "",
-};
-
-const alertErrorMessage = (errorCode) => {
-  switch (errorCode) {
-    case "auth/email-already-in-use":
-      alert("email already in use");
-      break;
-    case "auth/weak-password":
-      alert("weak password");
-      break;
-    default:
-      console.log(errorCode);
-      break;
-  }
 };
 
 const validateFormInputs = (formInputs) => {
@@ -58,7 +45,7 @@ const SignUpForm = () => {
 
       setFormFields(defaultFormFields);
     } catch (error) {
-      alertErrorMessage(error.code);
+      alertFirebaseErrorMessage(error.code);
     }
   };
 

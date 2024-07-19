@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  createUserDocumentFromAuth,
+  alertFirebaseErrorMessage,
   signInUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
@@ -8,38 +8,17 @@ import Button from "../button/Button";
 import FormInput from "../form-input/FormInput";
 import "./sign-in.scss";
 
+const googleSignIn = async () => {
+  try {
+    await signInWithGooglePopup();
+  } catch (error) {
+    alertFirebaseErrorMessage(error.code);
+  }
+};
+
 const defaultFormFields = {
   email: "",
   password: "",
-};
-
-const googleSignIn = async () => {
-  try {
-    const { user } = await signInWithGooglePopup();
-    // console.log(user);
-    const userDocRef = await createUserDocumentFromAuth(user);
-  } catch (error) {
-    // console.log(error.code);
-    switch (error.code) {
-      case "auth/popup-closed-by-user":
-        console.log("popup window closed by user");
-    }
-  }
-};
-
-const alertErrorMessage = (errorCode) => {
-  switch (errorCode) {
-    case "auth/invalid-credential":
-      alert("wrong email or password");
-      break;
-    case "auth/weak-password":
-      alert("weak password");
-      break;
-
-    default:
-      console.log(errorCode);
-      break;
-  }
 };
 
 const validateFormInputs = (formInputs) => {
@@ -60,19 +39,15 @@ const SignInForm = () => {
     if (!valid) return;
 
     try {
-      const { user } = await signInUserWithEmailAndPassword(email, password);
-
-      //   console.log(user);
+      await signInUserWithEmailAndPassword(email, password);
       setFormFields(defaultFormFields);
     } catch (error) {
-      //   console.log(error.code);
-      alertErrorMessage(error.code);
+      alertFirebaseErrorMessage(error.code);
     }
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setFormFields({ ...formFields, [name]: value });
   };
 
