@@ -2,6 +2,9 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import Home from "./routes/home/Home";
 import Navigation from "./routes/navigation/Navigation";
 import Auth from "./routes/auth/Auth";
+import Shop from "./routes/shop/Shop";
+import { useContext } from "react";
+import { CartContext } from "./contexts/cart-context/CartContext";
 
 const categories = [
   {
@@ -31,19 +34,22 @@ const categories = [
   },
 ];
 
-const Shop = () => {
-  return <h1>This is the shop page</h1>;
-};
-
 const App = () => {
+  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+
+  const toggleDropdown = () => {
+    isCartOpen && setIsCartOpen(false);
+  };
   return (
-    <Routes>
-      <Route path="/" element={<Navigation />}>
-        <Route index element={<Home />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/auth" element={<Auth />} />
-      </Route>
-    </Routes>
+    <div className="main" onClick={toggleDropdown}>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/auth" element={<Auth />} />
+        </Route>
+      </Routes>
+    </div>
   );
 };
 
