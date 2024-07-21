@@ -6,9 +6,7 @@ const checkItemToAdd = (cartItems, productToAdd) => {
   if (!found) return [...cartItems, { ...productToAdd, quantity: 1 }];
 
   return cartItems.map((item) => {
-    if (item.id === productToAdd.id) {
-      item.quantity++;
-    }
+    item.id === productToAdd.id && item.quantity++;
     return item;
   });
 };

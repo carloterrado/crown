@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="39px" viewBox="0 0 50 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>C-Robot Logo</title>
+    <desc>A cute robot in the shape of the letter C</desc>
+    <g id="C-Robot" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Logo" transform="translate(0, 0)">
+            <!-- Robot Body (C shape) -->
+            <path id="Body" fill="#808282" d="M45,19.5 A19.5,19.5 0 1,1 45,19.4 L35,19.5 A9.5,9.5 0 1,0 35,19.4 L45,19.5 Z"></path>
+            
+            <!-- Robot Eye -->
+            <circle id="Eye" fill="#101A1A" cx="13" cy="19.5" r="4"></circle>
+            <circle id="Pupil" fill="#FFFFFF" cx="14" cy="18.5" r="1.5"></circle>
+            
+            <!-- Robot Mouth -->
+            <path id="Mouth" fill="#5E6363" d="M10,26 Q13,29 16,26"></path>
+            
+            <!-- Robot Antenna -->
+            <line id="Antenna" x1="22" y1="2" x2="25" y2="5" stroke="#5E6363" stroke-width="2"></line>
+            <circle id="AntennaTip" fill="#5E6363" cx="22" cy="2" r="1"></circle>
+            
+            <!-- Decorative Elements -->
+            <circle id="Decor1" fill="#5E6363" cx="8" cy="10" r="2"></circle>
+            <circle id="Decor2" fill="#5E6363" cx="8" cy="29" r="2"></circle>
+            <circle id="Decor3" fill="#5E6363" cx="40" cy="19.5" r="2"></circle>
+        </g>
+    </g>
+</svg>

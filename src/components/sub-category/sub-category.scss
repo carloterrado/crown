@@ -1,0 +1,23 @@
+.sub-category-container {
+  h2 {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+
+    .title {
+      font-size: 28px;
+
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: normal;
+    }
+  }
+
+  .products-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10px;
+    row-gap: 50px;
+    margin-bottom: 30px;
+  }
+}

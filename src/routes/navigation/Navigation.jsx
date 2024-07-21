@@ -1,6 +1,7 @@
 import "./navigation.scss";
-import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
-import { Link, Outlet } from "react-router-dom";
+import { ReactComponent as TLogo } from "../../assets/crown.svg";
+import { ReactComponent as CLogo } from "../../assets/c.svg";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user-context/UserContext";
 import { CartContext } from "../../contexts/cart-context/CartContext";
@@ -12,11 +13,18 @@ const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    signOutAuthUser();
+  };
+
   return (
     <>
       <div className="navigation">
         <Link className="logo-container" to={"/"}>
-          <CrwnLogo className="logo" />
+          <TLogo className="logo" />
+          <TLogo className="logo" />
         </Link>
 
         <div className="nav-links-container">
@@ -24,7 +32,7 @@ const Navigation = () => {
             SHOP
           </Link>
           {currentUser ? (
-            <span className="nav-link" onClick={signOutAuthUser}>
+            <span className="nav-link" onClick={handleSignOut}>
               SIGN OUT
             </span>
           ) : (

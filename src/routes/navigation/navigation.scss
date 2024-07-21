@@ -6,9 +6,10 @@
   margin-bottom: 25px;
 
   .logo-container {
+    display: flex;
     height: 100%;
-    width: 70px;
-    padding: 25px;
+    width: 200px;
+    padding: 25px 0 25px;
   }
 
   .nav-links-container {
